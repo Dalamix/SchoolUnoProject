@@ -37,20 +37,7 @@ namespace SchoolUnoProject
             }
             //if(deck.ListCards().Cont;
         }
-        public void pickup(Player player)
-        { 
-            string input = Console.ReadLine().ToLower();
-            Console.WriteLine();
-            if (input == "pickup")
-            {
-                Deck.PickUpCard(player);
-            }
-            else
-            {
-                Console.WriteLine("Unknown Command");
-                Console.WriteLine();
-            }
-        }
+        
     }
 
     class UserInterface
@@ -81,6 +68,21 @@ namespace SchoolUnoProject
             Console.WriteLine($"Game started with {playerCount} players");
             return playerCount;
         }
+        public void pickup(Player player)
+        {
+            string input = Console.ReadLine().ToLower();
+            Console.WriteLine();
+            if (input == "pickup")
+            {
+                Deck.PickUpCard(player);
+            }
+            else
+            {
+                Console.WriteLine("Unknown Command");
+                Console.WriteLine();
+            }
+        }
+
         public void Cardusage()
         {
             Console.WriteLine("Player's cards:");
