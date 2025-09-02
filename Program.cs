@@ -12,16 +12,6 @@ namespace SchoolUnoProject
         {
             Name = name;
         }
-
-        public static List<Player> CreatePlayers(int count)
-        {
-            List<Player> players = new List<Player>();
-            for (int i = 1; i <= count; i++)
-            {
-                players.Add(new Player($"Player{i}"));
-            }
-            return players;
-        }
     }
     class Game
     {
@@ -63,31 +53,8 @@ namespace SchoolUnoProject
         }
     }
 
-    interface UI
+    class UserInterface
     {
-        //void ShowHand(List<string> hand);
-        //string PickUpCard(List<string> hand);
-        //void ShowAction(string message);
-        int Start();
-        void Cardusage();
-    }
-
-    class UserInterface : UI
-    {
-        //public void ShowHand(List<string> hand)
-        //{
-        //    Console.WriteLine("These are your cards: ");
-        //}
-
-        //public string PickUpCard(List<string> hand)
-        //{
-
-        //}
-
-        //public void ShowAction(string message)
-        //{
-
-        //}
         public int Start()
         {
             string input = "";
