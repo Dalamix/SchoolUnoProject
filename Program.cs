@@ -1,5 +1,24 @@
-﻿namespace SchoolUnoProject
+﻿using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
+
+namespace SchoolUnoProject
 {
+    class Deck
+    {
+        public Deck(Deck deck)
+        {
+
+        }
+
+        public Card[] ListCards()
+        {
+            Card[] cards = new Card[2];
+            cards[0] = new Card();
+            cards[1] = new Card();
+            return new Card[1];
+            //return deck.ListCards();
+        }
+    }
     public class Card
     {
         private Random random = new Random();
@@ -12,6 +31,7 @@
         {
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+2", "Blk", "Rev", "+4", "Col"
         };
+
 
         public char Color;
         public string Type;
@@ -39,6 +59,7 @@
     class Player
     {
         public string Name { get; set; }
+        public Deck Deck { get; set; }
 
         public Player(string name)
         {
@@ -77,6 +98,30 @@
                 Console.WriteLine();
             }
         }
+
+        public Card SelectCard(string cardname)
+        {
+            if (string.IsNullOrEmpty(cardname))
+            {
+                return null;
+            }
+
+
+            Card selectedCard = new Card(); //deck.GetCard(cardname);
+
+            if (true) //if (selectedCard != null)
+            {
+                return new Card(); //selectedCard;
+
+                // the card goes back to Game and is played, aka put on the pile!
+            }
+            else
+            {
+                return null;
+            }
+            //if(deck.ListCards().Cont;
+
+        }
     }
 
     interface UI
@@ -85,6 +130,7 @@
         //string PickUpCard(List<string> hand);
         //void ShowAction(string message);
         int Start();
+        void Cardusage();
     }
 
     class UserInterface : UI
@@ -126,22 +172,44 @@
                 Console.WriteLine();
                 Console.WriteLine("Invalid number. Please enter a number between 2 and 4.");
             }
-            Console.WriteLine($"Game started with {playerCount} players!");
+            Console.WriteLine($"Game started with {playerCount} players");
             return playerCount;
+        }
+        public void Cardusage()
+        {
+            Console.WriteLine("Player's cards:");
+            //for(int i = 0; i < player.ListCards().Length; i++)
+            //{
+            //    Console.WriteLine($"Card {i+1}");
+            //}
+            Console.WriteLine("Type the name of the card you want to play:");
+            string playerinput = Console.ReadLine();
+            while (player.SelectCard(playerinput) == null)
+            {
+                Console.WriteLine("Invalid card name, please try again:");
+                playerinput = Console.ReadLine();
+            }
+            Console.WriteLine("Card played!");
         }
     }
 
-    class program
+    class Program
     {
         public static void Main()
         {
             UserInterface userinterface = new UserInterface();
             int playercount = userinterface.Start();
-            if (playercount == 0)
+            if (playercount != 2 || playercount != 3 || playercount != 4)
             {
                 return;
             }
             List<Player> players = Player.CreatePlayers(playercount);
+
+            for(int i = 0; i <= playercount; i++)
+            {
+                Deck deck = new Deck();
+                players[i].Deck = deck;
+            }
         }
     }
 }
