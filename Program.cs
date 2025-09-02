@@ -1,14 +1,5 @@
 ﻿namespace SchoolUnoProject
 {
-    class Card
-    {
-
-    }
-    class Deck
-    {
-
-    }
-
     class Game
     {
 
@@ -61,14 +52,9 @@
     {
         public static void Main()
         {
-            //gonna write some code to test out the player here, this will be removed and replaced with functionality in Game later
             Deck deck = new Deck();
             Player player = new Player(deck);
             Console.WriteLine("Player's cards:");
-            //for(int i = 0; i < player.ListCards().Length; i++)
-            //{
-            //    Console.WriteLine($"Card {i+1}");
-            //}
             Console.WriteLine("Type the name of the card you want to play:");
             string playerinput = Console.ReadLine();
             while (player.SelectCard(playerinput) == null)

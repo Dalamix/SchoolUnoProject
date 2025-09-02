@@ -34,5 +34,10 @@ namespace SchoolUnoProject
             }
             Name = Color.ToString() + " " + Type;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
