@@ -7,7 +7,7 @@ namespace SchoolUnoProject
     {
         public Deck(Deck deck)
         {
-
+            
         }
 
         public Card[] ListCards()
@@ -17,6 +17,12 @@ namespace SchoolUnoProject
             cards[1] = new Card();
             return new Card[1];
             //return deck.ListCards();
+        }
+        public void PickUpCard(Player player)
+        {
+            Card newCard = new Card();
+            Console.WriteLine($"{player} picked up a card: {newCard.Name}");
+            Console.WriteLine(); // empty line for readability
         }
     }
     public class Card
@@ -78,27 +84,6 @@ namespace SchoolUnoProject
     }
     class Game
     {
-        public void PickUpCard(Player player)
-        {
-            Card newCard = new Card();
-            Console.WriteLine($"{player} picked up a card: {newCard.Name}");
-            Console.WriteLine(); // empty line for readability
-        }
-        public void pickup(Player player)
-        {
-            string input = Console.ReadLine().ToLower();
-            Console.WriteLine();
-            if(input == "pickup")
-            {
-                PickUpCard(player);
-            }
-            else
-            {
-                Console.WriteLine("Unknown Command");
-                Console.WriteLine();
-            }
-        }
-
         public Card SelectCard(string cardname)
         {
             if (string.IsNullOrEmpty(cardname))
@@ -120,7 +105,20 @@ namespace SchoolUnoProject
                 return null;
             }
             //if(deck.ListCards().Cont;
-
+        }
+        public void pickup(Player player)
+        { 
+            string input = Console.ReadLine().ToLower();
+            Console.WriteLine();
+            if (input == "pickup")
+            {
+                Deck.PickUpCard(player);
+            }
+            else
+            {
+                Console.WriteLine("Unknown Command");
+                Console.WriteLine();
+            }
         }
     }
 
