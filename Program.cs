@@ -37,20 +37,7 @@ namespace SchoolUnoProject
             }
             //if(deck.ListCards().Cont;
         }
-        public void pickup(Player player)
-        { 
-            string input = Console.ReadLine().ToLower();
-            Console.WriteLine();
-            if (input == "pickup")
-            {
-                Deck.PickUpCard(player);
-            }
-            else
-            {
-                Console.WriteLine("Unknown Command");
-                Console.WriteLine();
-            }
-        }
+        
     }
 
     class UserInterface
@@ -81,6 +68,21 @@ namespace SchoolUnoProject
             Console.WriteLine($"Game started with {playerCount} players");
             return playerCount;
         }
+        public void pickup(Player player)
+        {
+            string input = Console.ReadLine().ToLower();
+            Console.WriteLine();
+            if (input == "pickup")
+            {
+                Deck.PickUpCard(player);
+            }
+            else
+            {
+                Console.WriteLine("Unknown Command");
+                Console.WriteLine();
+            }
+        }
+
         public void Cardusage()
         {
             Console.WriteLine("Player's cards:");
@@ -90,7 +92,7 @@ namespace SchoolUnoProject
             //}
             Console.WriteLine("Type the name of the card you want to play:");
             string playerinput = Console.ReadLine();
-            while (player.SelectCard(playerinput) == null)
+            while (Player.SelectCard(playerinput) == null)
             {
                 Console.WriteLine("Invalid card name, please try again:");
                 playerinput = Console.ReadLine();
@@ -109,7 +111,6 @@ namespace SchoolUnoProject
             {
                 return;
             }
-            List<Player> players = Player.CreatePlayers(playercount);
 
             for(int i = 0; i <= playercount; i++)
             {
