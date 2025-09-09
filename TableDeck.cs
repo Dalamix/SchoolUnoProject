@@ -23,6 +23,11 @@ namespace SchoolUnoProject
             return randomCard;
         }
 
+        public ushort CardsLeft()
+        {
+            return (ushort)tableCards.Count;
+        }
+
         private List<Card> CreateCards()
         {
             List<Card> cards = new List<Card>();
@@ -53,7 +58,7 @@ namespace SchoolUnoProject
 
         private Card[] CreateZeros()
         {
-            Card[] cards = new Card[5];
+            Card[] cards = new Card[4];
             char[] colors = { 'R', 'G', 'B', 'Y' };
             for (int i = 0; i < 4; i++)
             {
