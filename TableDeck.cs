@@ -15,6 +15,7 @@ namespace SchoolUnoProject
             random = new Random();
             tableCards = CreateCards();
         }
+        //femboys are hugging us with love! We love femboys!
 
         public Card RandomCard()
         {
