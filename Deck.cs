@@ -1,6 +1,6 @@
 ﻿namespace SchoolUnoProject
 {
-    class Deck
+    public class Deck
     {
         private List<Card> list;
         public Deck()
@@ -19,7 +19,7 @@
         {
             list.Remove(card);
         }
-        public void PickCard()
+        public void PickupCard()
         {
             list.Add(new Card());
         }
