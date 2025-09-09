@@ -2,10 +2,16 @@
 {
     public class UserInterface
     {
+        // Variables
+        public Player CurrentPlayer { get; set; }
+
+        // Player commands
+
+        // Start the game and send relevant info to Game
         public int Start()
         {
             string? input = "";
-            while (input.ToLower() != "start")
+            while (input?.ToLower() != "start")
             {
                 Console.Write("Type 'start' to begin the game: ");
                 input = Console.ReadLine();
@@ -28,7 +34,8 @@
             Console.WriteLine($"Game started with {playerCount} players");
             return playerCount;
         }
-        public void pickup(Player player)
+
+        public void Pickup(Player player)
         {
             string input = Console.ReadLine().ToLower();
             Console.WriteLine();
@@ -43,7 +50,8 @@
             }
         }
 
-        public void Cardusage()
+
+        public void PlayCard()
         {
             Console.WriteLine("Player's cards:");
             //for(int i = 0; i < player.ListCards().Length; i++)
@@ -58,6 +66,35 @@
                 playerinput = Console.ReadLine();
             }
             Console.WriteLine("Card played!");
+        }
+
+        public void CallUno()
+        {
+
+        }
+
+        // UI methods
+
+        public void UpdateDeck()
+        {
+
+        }
+
+        public void DisplayDeck()
+        {
+
+        }
+
+        // Wrappers for Game class
+    
+        public void AdvanceTurn()
+        {
+
+        }
+
+        public void FinishGame()
+        {
+
         }
     }
 }
