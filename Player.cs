@@ -8,6 +8,7 @@
         public Player(string name)
         {
             Name = name;
+            Deck = new Deck();
         }
     }
 }

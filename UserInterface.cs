@@ -4,7 +4,7 @@
     {
         public int Start()
         {
-            string input = "";
+            string? input = "";
             while (input.ToLower() != "start")
             {
                 Console.Write("Type 'start' to begin the game: ");
@@ -34,7 +34,7 @@
             Console.WriteLine();
             if (input == "pickup")
             {
-                Deck.PickUpCard(player);
+                Deck.PickupCard(player);
             }
             else
             {
