@@ -1,6 +1,6 @@
 using SchoolUnoProject;
 
-class Game
+public class Game
 {
     public Card SelectCard(string cardname)
     {

@@ -6,6 +6,8 @@
         {
             Game game = new Game();
             UserInterface ui = new UserInterface();
+            ui.Game = game;
+
             ui.Start();
         }
     }
