@@ -35,22 +35,6 @@ namespace SchoolUnoProject
             Name = Color.ToString() + " " + Type;
         }
 
-        public Card(char color, string type, bool special)
-        {
-            Type = type;
-            Special = (!Char.IsNumber(Type[0])) ? true : false;
-            // We cant have a wildcard 6, it needs to be a special (+4 or color switch)
-            if (Special == true && (Type == "+4" || Type == "Col"))
-            {
-                Color = 'W';
-            }
-            else
-            {
-                Color = color;
-            }
-            Name = Color.ToString() + " " + Type;
-        }
-
         public override string ToString()
         {
             return Name;
