@@ -45,11 +45,11 @@ namespace SchoolUnoProject
             {
                 if (i % 2 == 0)
                 {
-                    cards[i] = new Card('W', "+4", true);
+                    cards[i] = new Card("Wild", "+4", true);
                 }
                 else
                 {
-                    cards[i] = new Card('W', "Col", true);
+                    cards[i] = new Card("Wild", "Color", true);
                 }
             }
 
@@ -59,7 +59,7 @@ namespace SchoolUnoProject
         private Card[] CreateZeros()
         {
             Card[] cards = new Card[4];
-            char[] colors = { 'R', 'G', 'B', 'Y' };
+            string[] colors = { "Red", "Green", "Blue", "Yellow" };
             for (int i = 0; i < 4; i++)
             {
                 cards[i] = new Card(colors[i], "0", false);
@@ -69,7 +69,7 @@ namespace SchoolUnoProject
         private Card[] CreateNumbers()
         {
             Card[] cards = new Card[72];
-            char[] colors = { 'R', 'G', 'B', 'Y' };
+            string[] colors = { "Red", "Green", "Blue", "Yellow" };
             ushort counter = 0;
             for (int i = 0; i < colors.Length; i++)
             {
@@ -88,8 +88,8 @@ namespace SchoolUnoProject
         private Card[] CreateSpecials()
         {
             Card[] cards = new Card[24];
-            char[] colors = { 'R', 'G', 'B', 'Y' };
-            string[] types = { "+2", "Blk", "Rev" };
+            string[] colors = { "Red", "Green", "Blue", "Yellow" };
+            string[] types = { "+2", "Block", "Reverse" };
             ushort counter = 0;
             for (int i = 0; i < colors.Length; i++)
             {
