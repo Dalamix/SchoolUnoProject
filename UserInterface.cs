@@ -28,7 +28,7 @@
             Console.WriteLine($"Game started with {playerCount} players");
             return playerCount;
         }
-        public void pickup(Player player)
+        public void PickUp(Player player)
         {
             string input = Console.ReadLine().ToLower();
             Console.WriteLine();
@@ -43,7 +43,7 @@
             }
         }
 
-        public void Cardusage()
+        public void CardUsage(Player plr)
         {
             Console.WriteLine("Player's cards:");
             //for(int i = 0; i < player.ListCards().Length; i++)
@@ -52,7 +52,7 @@
             //}
             Console.WriteLine("Type the name of the card you want to play:");
             string playerinput = Console.ReadLine();
-            while (Player.SelectCard(playerinput) == null)
+            while (plr.SelectCard(playerinput) == null)
             {
                 Console.WriteLine("Invalid card name, please try again:");
                 playerinput = Console.ReadLine();

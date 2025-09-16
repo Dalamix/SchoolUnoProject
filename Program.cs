@@ -10,8 +10,9 @@
             {
                 return;
             }
+            Game game = new Game(playercount, userinterface);
 
-            for(int i = 0; i <= playercount; i++)
+            for (int i = 0; i <= playercount; i++)
             {
                 Deck deck = new Deck();
                 players[i].Deck = deck;
