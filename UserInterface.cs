@@ -1,15 +1,10 @@
-﻿namespace SchoolUnoProject
+﻿using System.Numerics;
+
+namespace SchoolUnoProject
 {
     public class UserInterface
     {
-        // Variables
-        private Player CurrentPlayer { get; set; }
-        public Game Game { get; set; } // Reference to game because we need it
-
-        // Player commands
-
-        // Start the game and send relevant info to Game
-        public void Start()
+        public Player[] Start()
         {
             string? input = "";
             Console.WriteLine("Welcome to UNO!\n==========");
@@ -26,86 +21,40 @@
                 }
                 Console.WriteLine("\nInvalid number. Please enter a number between 2 and 4.");
             }
-            // TODO: Create players and pass to Player class
-
-            // TODO: Add ability to decide house rules
-            bool[] rules; 
-            while(true)
+            Player[] playersToReturn = new Player[playerCount];
+            for (int i = 0; i < playerCount; i++)
             {
-                break;
+                Console.Write($"Enter name for Player {i}: ");
+                string playerName = Console.ReadLine(); 
+                while(string.IsNullOrEmpty(playerName))
+                {
+                    Console.WriteLine("You fucker. Write a name.");
+                    playerName = Console.ReadLine();
+                }
+                Player player = new Player(playerName);
+                playersToReturn[i] = player;
+                Console.WriteLine($"Player {i} is named {playerName}");
             }
-
-            while(true) 
-            {
-                Console.WriteLine("\n==========\nConfirm, are these rules correct? (Y/N)");
-                Console.WriteLine($"Players: {playerCount}\n");
-                string? confirm = Console.ReadLine().ToLower();
-                if (confirm == "n")
-                {
-                    Start();
-                    return;
-                }
-                else if (confirm != "y" || string.IsNullOrEmpty(confirm))
-                {
-                    Console.WriteLine("\nInvalid answer.");
-                }
-                else
-                {
-                    break;
-                }
-            }
-            // TODO: implement into actual game class
-            Game?.SetRules(rules);
-
-            Console.WriteLine($"Game started!");
+            Console.WriteLine($"Game started with {playerCount} players.");
+            return playersToReturn;
         }
-
-        public void Input()
+        public void PickUp(Player player)
         {
-            int choice;
-            while (true)
-            {
-                Console.WriteLine("\nDecide your next move:\n1. Play a card\n2. Pick up new cards\n3. Call UNO!");
-                if (int.TryParse(Console.ReadLine(), out choice) && choice > 0 && choice <= 3)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input, please try again");
-                }
-            }
-            switch (choice)
-            {
-                case 1:
-                    PlayCard();
-                    break;
-                case 2:
-                    Pickup();
-                    break;
-                case 3:
-                    CallUno();
-                    break;
-            }
-            
+            string input = Console.ReadLine().ToLower();
+            Console.WriteLine();
         }
 
-        public void Pickup(Player player)
-        {
-            
-        }
-
-
-        public void PlayCard()
+        public void CardUsage(Player plr)
         {
             Console.WriteLine("Player's cards:");
-            //for(int i = 0; i < player.ListCards().Length; i++)
-            //{
-            //    Console.WriteLine($"Card {i+1}");
-            //}
+            string[] cardNames = plr.ListCards();
+            for (int i = 0; i < plr.CardsLeft(); i++)
+            {
+                Console.WriteLine($"Card {i + 1}: {cardNames[i]}");
+            }
             Console.WriteLine("Type the name of the card you want to play:");
             string playerinput = Console.ReadLine();
-            while (playerinput == null)
+            while (plr.SelectCard(playerinput) == null)
             {
                 Console.WriteLine("Invalid card name, please try again:");
                 playerinput = Console.ReadLine();
@@ -113,33 +62,27 @@
             Console.WriteLine("Card played!");
         }
 
-        public void CallUno()
+        public string Interpreter(Player plr)
         {
+            Console.WriteLine("Player's cards:");
+            for (int i = 0; i < player.ListCards().Length; i++)
+            {
+                Console.WriteLine($"Card {i + 1}");
+            }
+            string input = Console.ReadLine().ToLower();
+            if (input == "pickup")
+            {
+                return input;
+            }
+            else if (plr.SelectCard(input) != null)
+            {
+                return input;
+            }
+            else
+            {
+                return "";
+            }
 
-        }
-
-        // UI methods
-
-        public void UpdateDeck()
-        {
-
-        }
-
-        public void DisplayDeck()
-        {
-
-        }
-
-        // Wrappers for Game class
-    
-        public void AdvanceTurn()
-        {
-            Game?.AdvanceTurn();
-        }
-
-        public void FinishGame()
-        {
-            Game?.FinishGame();
         }
     }
 }

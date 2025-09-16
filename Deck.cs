@@ -11,6 +11,10 @@
         {
             return list;
         }
+        public int CardsCount()
+        {
+            return list.Count;
+        }
         public void AddCard(Card card)
         {
             list.Add(card);
@@ -18,10 +22,6 @@
         public void RemoveCard(Card card)
         {
             list.Remove(card);
-        }
-        public void PickupCard()
-        {
-            list.Add(new Card());
         }
     }
 }

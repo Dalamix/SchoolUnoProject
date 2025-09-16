@@ -4,11 +4,13 @@
     {
         public static void Main()
         {
-            Game game = new Game();
-            UserInterface ui = new UserInterface();
-            ui.Game = game;
+            UserInterface userInterface = new UserInterface();
+            TableDeck tableDeck = new TableDeck();
+            Player[] players = userInterface.Start();
+            Game game = new Game(players, userInterface, tableDeck);
 
-            ui.Start();
+            game.GameLoop();
+
         }
     }
 }
