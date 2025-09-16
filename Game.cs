@@ -64,12 +64,45 @@ class Game
         //          player has won!
         bool gameRunning = true;
         int playcount = players.Length;
+        Card last_card = tableDeck.RandomCard();
         while (gameRunning)
         {
             for(int i = 0; i < playcount; i++)
             {
                 Player player = players[i];
-                userInterface.Interpreter(player);
+                Console.Clear();
+                Console.WriteLine($"The last card played was {last_card.ToString()}");
+                userInterface.DisplayTurn(player);
+
+                while (true)
+                {
+                    string? input = userInterface.Interpreter(player);
+                    if (input != "pickup" || input != "pick up")
+                    {
+                        Card played_card = player.PlayCard(input);
+                        if (last_card.Color == "Wild" || (played_card.Color == last_card.Color || played_card.Type == last_card.Type))
+                        {
+                            player.RemoveCard(played_card);
+                            last_card = played_card;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You can't play that card! Try again.");
+                        }
+                        
+                    }
+                    else if (input == "pickup" || input == "pick up")
+                    {
+                        GiveCard(player);
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid command, please try again");
+                    }
+                }
+
                 if (players[i].CardsLeft() == 0)
                 {
                     gameRunning = false;

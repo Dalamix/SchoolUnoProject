@@ -44,53 +44,32 @@ namespace SchoolUnoProject
             Console.WriteLine($"Game started with {playerCount} players.");
             return playersToReturn;
         }
-        public void PickUp(Player player)
+        private void Line()
         {
-            string input = Console.ReadLine().ToLower();
-            Console.WriteLine();
+            Console.WriteLine("--------------");
         }
 
-        public void CardUsage(Player plr)
+        // I've decided to split this into it's own function because of the way
+        // we handle incorrect cards being selected in GameLoop.
+        // Leave it like this, this is exactly what UI should be used for
+        // - Alvin
+        public void DisplayTurn(Player plr)
         {
-            Console.WriteLine("Player's cards:");
-            string[] cardNames = plr.ListCards();
-            for (int i = 0; i < plr.CardsLeft(); i++)
-            {
-                Console.WriteLine($"Card {i + 1}: {cardNames[i]}");
-            }
-            Console.WriteLine("Type the name of the card you want to play:");
-            string playerinput = Console.ReadLine();
-            while (plr.SelectCard(playerinput) == null)
-            {
-                Console.WriteLine("Invalid card name, please try again:");
-                playerinput = Console.ReadLine();
-            }
-            Console.WriteLine("Card played!");
-        }
-
-        public string Interpreter(Player plr)
-        {
-            Console.Clear();
             Console.WriteLine($"{plr.Name}'s cards:");
             string[] cardNames = plr.ListCards();
             for (int i = 0; i < plr.CardsLeft(); i++)
             {
                 Console.WriteLine($"Card {i + 1}: {cardNames[i]}");
             }
-            string input = Console.ReadLine().ToLower();
-            if (input == "pickup")
-            {
-                return input;
-            }
-            else if (plr.SelectCard(input) != null)
-            {
-                return input;
-            }
-            else
-            {
-                return "";
-            }
+        }
 
+        public string Interpreter(Player plr)
+        {
+            Line();
+            Console.WriteLine("Type the card you want to play (for example, G 4)\nor pickup a card.");
+            string input = Console.ReadLine().ToLower();
+            
+            return input;
         }
     }
 }

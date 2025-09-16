@@ -11,21 +11,26 @@
             Deck = new Deck();
         }
 
-        public Card SelectCard(string cardname)
+        // Turn this int into a position inside of an array we can look up
+        public Card PlayCard(string card_name)
         {
-            if (string.IsNullOrEmpty(cardname))
+            if (string.IsNullOrEmpty(card_name))
             {
                 return null;
             }
             foreach (var card in Deck.ReadDeck())
             {
-                if (card.Name.Equals(cardname, StringComparison.OrdinalIgnoreCase))
+                if (card.Name.Equals(card_name, StringComparison.OrdinalIgnoreCase))
                 {
-                    Deck.RemoveCard(card);
                     return card;
                 }
             }
             return null;
+        }
+
+        public void RemoveCard(Card card)
+        {
+            Deck.RemoveCard(card);
         }
 
         public string[] ListCards()

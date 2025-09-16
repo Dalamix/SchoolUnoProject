@@ -4,16 +4,16 @@ namespace SchoolUnoProject
     {
         private Random random = new Random();
 
-        private char[] Colors =
+        private string[] Colors =
         {
-            'R', 'G', 'B', 'Y', 'W'
+            "Red", "Green", "Blue", "Yellow", "Wild"
         };
         private string[] Types =
         {
-            "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+2", "Blk", "Rev", "+4", "Col"
+            "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+2", "Block", "Reverse", "+4", "Color"
         };
 
-        public char Color;
+        public string Color;
         public string Type;
         public string Name;
         public bool? Special;
@@ -24,9 +24,9 @@ namespace SchoolUnoProject
             Type = Types[random.Next(Types.Length)];
             Special = (!Char.IsNumber(Type[0])) ? true : false;
             // We cant have a wildcard 6, it needs to be a special (+4 or color switch)
-            if (Special == true && (Type == "+4" || Type == "Col"))
+            if (Special == true && (Type == "+4" || Type == "Color"))
             {
-                Color = 'W';
+                Color = "Wild";
             }
             else
             {
@@ -35,14 +35,14 @@ namespace SchoolUnoProject
             Name = Color.ToString() + " " + Type;
         }
 
-        public Card(char color, string type, bool special)
+        public Card(string color, string type, bool special)
         {
             Type = type;
             Special = (!Char.IsNumber(Type[0])) ? true : false;
             // We cant have a wildcard 6, it needs to be a special (+4 or color switch)
-            if (Special == true && (Type == "+4" || Type == "Col"))
+            if (Special == true && (Type == "+4" || Type == "Color"))
             {
-                Color = 'W';
+                Color = "Wild";
             }
             else
             {
