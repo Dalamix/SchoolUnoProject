@@ -77,7 +77,12 @@ class Game
                 while (true)
                 {
                     string? input = userInterface.Interpreter(player);
-                    if (input != "pickup" || input != "pick up")
+                    if (input == "pickup" || input == "pick up")
+                    {
+                        GiveCard(player);
+                        break;
+                    }
+                    else if (input != "pickup" || input != "pick up")
                     {
                         Card played_card = player.PlayCard(input);
                         if (last_card.Color == "Wild" || (played_card.Color == last_card.Color || played_card.Type == last_card.Type))
@@ -92,11 +97,7 @@ class Game
                         }
                         
                     }
-                    else if (input == "pickup" || input == "pick up")
-                    {
-                        GiveCard(player);
-                        break;
-                    }
+                    
                     else
                     {
                         Console.WriteLine("Invalid command, please try again");
