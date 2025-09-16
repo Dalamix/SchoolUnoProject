@@ -4,11 +4,32 @@ class Game
 {
     Player[] players;
     UserInterface userInterface;
+    TableDeck tableDeck;
+    int playerCount;
 
-    public Game(int playcount, UserInterface _userinterface)
+    public Game(Player[] _players, UserInterface _userInterface, TableDeck _tableDeck)
     {
-        players = new Player[playcount];
-        userInterface = _userinterface;
+        players = _players;
+        userInterface = _userInterface;
+        tableDeck = _tableDeck;
+        playerCount = players.Length;
+    }
+
+    public void DealCards()
+    {
+        for(int i = 0; i < playerCount; i++)
+        {
+            for(int j = 0; j < 7; j++)
+            {
+                GiveCard(players[i]);
+            }
+        }
+    }
+
+    public void GiveCard(Player player)
+    {
+        Card newCard = tableDeck.RandomCard();
+        player.ReceiveCard(newCard);
     }
 
     public Card SelectCard(string cardname)
@@ -41,27 +62,22 @@ class Game
         //      player.Turn()
         //      if player.Deck.CardsLeft() == 0
         //          player has won!
-        // ram ranch femboys
-        // femboys are cute <3
-
-        // femboys are hugging us with love! We love femboys!
         bool gameRunning = true;
         int playcount = players.Length;
         while (gameRunning)
         {
             for(int i = 0; i < playcount; i++)
             {
-                // players[i].Turn();
                 Player player = players[i];
-                userInterface.CardUsage(player);
-                if (players[i].Deck.CardsLeft() == 0)
+                userInterface.Interpreter(player);
+                if (players[i].CardsLeft() == 0)
                 {
                     gameRunning = false;
                     Console.WriteLine($"{players[i].Name} has won the game!");
                     break;
                 }
             }
-            // ram ranch femboys 
+            
         }
 
     }

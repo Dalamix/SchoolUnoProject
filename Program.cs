@@ -4,19 +4,13 @@
     {
         public static void Main()
         {
-            UserInterface userinterface = new UserInterface();
-            int playercount = userinterface.Start();
-            if (playercount != 2 || playercount != 3 || playercount != 4)
-            {
-                return;
-            }
-            Game game = new Game(playercount, userinterface);
+            UserInterface userInterface = new UserInterface();
+            TableDeck tableDeck = new TableDeck();
+            Player[] players = userInterface.Start();
+            Game game = new Game(players, userInterface, tableDeck);
 
-            for (int i = 0; i <= playercount; i++)
-            {
-                Deck deck = new Deck();
-                players[i].Deck = deck;
-            }
+            game.GameLoop();
+
         }
     }
 }
