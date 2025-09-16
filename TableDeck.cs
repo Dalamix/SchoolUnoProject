@@ -13,18 +13,28 @@ namespace SchoolUnoProject
         public TableDeck() 
         {
             random = new Random();
-            for (int i = 0; i < 108; i++)
-            {
-                tableCards = CreateCards();
-            }
+            tableCards = CreateCards();
+        }
+        
+        public Card RandomCard()
+        {
+            Card randomCard = tableCards[random.Next(0, tableCards.Count)];
+            tableCards.Remove(randomCard);
+            return randomCard;
+        }
 
+        public ushort CardsLeft()
+        {
+            return (ushort)tableCards.Count;
         }
 
         private List<Card> CreateCards()
         {
             List<Card> cards = new List<Card>();
             cards.AddRange(CreateWilds());
-
+            cards.AddRange(CreateZeros());
+            cards.AddRange(CreateNumbers());
+            cards.AddRange(CreateSpecials());
             return cards;
         }
 
@@ -48,7 +58,7 @@ namespace SchoolUnoProject
 
         private Card[] CreateZeros()
         {
-            Card[] cards = new Card[5];
+            Card[] cards = new Card[4];
             char[] colors = { 'R', 'G', 'B', 'Y' };
             for (int i = 0; i < 4; i++)
             {
@@ -61,19 +71,38 @@ namespace SchoolUnoProject
             Card[] cards = new Card[72];
             char[] colors = { 'R', 'G', 'B', 'Y' };
             ushort counter = 0;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < colors.Length; i++)
             {
-                cards[counter] = new Card(colors[i], "0", false);
+                for (int j = 1; j <= 9; j++)
+                {
+                    cards[counter] = new Card(colors[i], j.ToString(), false);
+                    counter++;
+                    cards[counter] = new Card(colors[i], j.ToString(), false);
+                    counter++;
+                }
             }
 
             return cards;
         }
 
-        public Card RandomCard()
+        private Card[] CreateSpecials()
         {
-            Card randomCard = tableCards[random.Next(0, tableCards.Count)];
-            tableCards.Remove(randomCard);
-            return randomCard;
+            Card[] cards = new Card[24];
+            char[] colors = { 'R', 'G', 'B', 'Y' };
+            string[] types = { "+2", "Blk", "Rev" };
+            ushort counter = 0;
+            for (int i = 0; i < colors.Length; i++)
+            {
+                for (int j = 0; j < types.Length; j++)
+                {
+                    cards[counter] = new Card(colors[i], types[j], false);
+                    counter++;
+                    cards[counter] = new Card(colors[i], types[j], false);
+                    counter++;
+                }
+            }
+
+            return cards;
         }
     }
 }
