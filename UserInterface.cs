@@ -60,7 +60,7 @@ namespace SchoolUnoProject
                 {
                     Console.WriteLine("You fucker. Write a name.");
                     playerName = Console.ReadLine();
-                }
+        }
                 Player player = new Player(playerName);
                 playersToReturn[i] = player;
                 Console.WriteLine($"Player {i+1} is named {playerName}");
@@ -78,7 +78,7 @@ namespace SchoolUnoProject
         // Leave it like this, this is exactly what UI should be used for
         // - Alvin
         public void DisplayTurn(Player plr)
-        {
+            {
             Line();
             Console.WriteLine($"{plr.Name}'s cards:");
             string[] cardNames = plr.ListCards();
@@ -92,12 +92,12 @@ namespace SchoolUnoProject
         {
             Console.Clear();
             while (true)
-            {
+        {
                 
                 Console.WriteLine("Pick a color: Red, Green, Blue or Yellow");
                 string color = Console.ReadLine().ToLower();
                 switch (color)
-                {
+            {
                     case "red":
                         return "Red";
                     case "green":
@@ -115,7 +115,7 @@ namespace SchoolUnoProject
                         break;
                 }
             }
-        }
+            }
 
         public string Interpreter()
         {

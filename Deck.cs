@@ -23,5 +23,9 @@
         {
             list.Remove(card);
         }
+        public void PickCard()
+        {
+            list.Add(new Card());
+        }
     }
 }
