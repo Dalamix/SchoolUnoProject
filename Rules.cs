@@ -8,5 +8,17 @@ namespace SchoolUnoProject
 {
     public class Rules
     {
+        public bool StackP2Card;
+        public bool StackP4Card;
+        public Rules(string ruleset) 
+        { 
+            if (ruleset=="Classic")
+            {
+                StackP2Card = false;
+                StackP4Card = false;
+            }
+        }
+
+
     }
 }

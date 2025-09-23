@@ -18,6 +18,11 @@ namespace SchoolUnoProject
         
         public Card RandomCard()
         {
+            if(CardsLeft() == 0)
+            {
+                tableCards = CreateCards();
+                Console.WriteLine("Deck has been drained and is dry");
+            }
             Card randomCard = tableCards[random.Next(0, tableCards.Count)];
             tableCards.Remove(randomCard);
             return randomCard;

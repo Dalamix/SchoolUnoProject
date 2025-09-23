@@ -4,6 +4,7 @@
     {
         public string Name { get; set; }
         private Deck Deck { get; set; }
+        public bool CalledUno { get; set; }
 
         public Player(string name)
         {
