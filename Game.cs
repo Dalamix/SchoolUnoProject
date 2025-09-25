@@ -1,4 +1,5 @@
 using SchoolUnoProject;
+using System.Net.Http.Headers;
 
 class Game
 {
@@ -98,6 +99,25 @@ class Game
         int playcount = players.Length;
         Card last_card = tableDeck.RandomCard();
         string wild_choice = null;
+        if (last_card.Color == "Wild")
+        {
+            Random rand = new Random();
+            switch (rand.Next(0, 4))
+            {
+                case 0:
+                    wild_choice = "Red";
+                    break;
+                case 1:
+                    wild_choice = "Green";
+                    break;
+                case 2:
+                    wild_choice = "Blue";
+                    break;
+                case 3:
+                    wild_choice = "Yellow";
+                    break;
+            }
+        }
         bool blocked = false;
         while (gameRunning)
         {

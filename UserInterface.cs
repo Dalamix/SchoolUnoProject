@@ -11,8 +11,12 @@ namespace SchoolUnoProject
             string? input = "";
             while (input.ToLower() != "start")
             {
-                Console.Write("Type 'start' to begin the game: ");
+                Console.WriteLine("Type 'start' to begin the game, alternatively 'exit' to exit.");
                 input = Console.ReadLine();
+                if(input.ToLower() == "exit")
+                {
+                    Environment.Exit(0);
+                }
                 Console.WriteLine();
             }
 
